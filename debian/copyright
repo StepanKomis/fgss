@@ -1,6 +1,6 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: fgss
-Source: https://github.com/StepanKomis/fssh
+Source: https://github.com/StepanKomis/fgss
 
 Files: *
 Copyright: 2026 StepanKomis

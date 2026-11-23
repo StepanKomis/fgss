@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: StepanKomis <komis.stepan@gmail.com>
 Build-Depends: debhelper-compat (= 13), golang-go
 Standards-Version: 4.6.2
-Homepage: https://github.com/StepanKomis/fssh
+Homepage: https://github.com/StepanKomis/fgss
 Rules-Requires-Root: no
 
 Package: fgss
