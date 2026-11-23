@@ -1,0 +1,15 @@
+Source: fgss
+Section: admin
+Priority: optional
+Maintainer: StepanKomis <komis.stepan@gmail.com>
+Build-Depends: debhelper-compat (= 13), golang-go
+Standards-Version: 4.6.2
+Homepage: https://github.com/StepanKomis/fssh
+Rules-Requires-Root: no
+
+Package: fgss
+Architecture: any
+Depends: ${misc:Depends}, openssh-client
+Description: push and run scripts on remote hosts over ssh/scp
+ fgss copies a script to a remote host with scp and executes it over ssh,
+ honouring ~/.ssh/config. Bundled scripts live in /etc/fgss/scripts.
