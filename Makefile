@@ -1,5 +1,5 @@
 BIN        := fgss
-PKG        := ./src/cmd/server
+PKG        := ./src/cmd/fgss
 VERSION    ?= $(shell git describe --tags --always --dirty 2>/dev/null || echo dev)
 
 # Packagers override these; DESTDIR is the staging root.
@@ -10,7 +10,7 @@ SYSCONFDIR ?= /etc
 SCRIPTDIR  ?= $(SYSCONFDIR)/fgss/scripts
 
 GOFLAGS    ?= -trimpath -buildvcs=false
-LDFLAGS    ?= -s -w -X main.version=$(VERSION)
+LDFLAGS    ?= -s -w -X github.com/StepanKomis/fgss/src/internal/version.Version=$(VERSION)
 
 .PHONY: run install
 
@@ -22,4 +22,4 @@ install: ## Build and install binary + scripts (honours DESTDIR, PREFIX)
 	go build $(GOFLAGS) -ldflags "$(LDFLAGS)" -o $(BIN) $(PKG)
 	install -Dm755 $(BIN) $(DESTDIR)$(BINDIR)/$(BIN)
 	install -d $(DESTDIR)$(SCRIPTDIR)
-	install -m755 scripts/*.sh $(DESTDIR)$(SCRIPTDIR)/
+	install -m755 scripts/* $(DESTDIR)$(SCRIPTDIR)/
