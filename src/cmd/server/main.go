@@ -1,3 +1,17 @@
+// Copyright 2026 StepanKomis
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
 package main
 
 import (
@@ -11,11 +25,11 @@ import (
 var version = "dev"
 
 // defaultScriptsDir is where packages install the bundled scripts.
-// Override with GSS_SCRIPTS_DIR (useful for development).
-const defaultScriptsDir = "/etc/gss/scripts"
+// Override with FGSS_SCRIPTS_DIR (useful for development).
+const defaultScriptsDir = "/etc/fgss/scripts"
 
 func scriptsDir() string {
-	if d := os.Getenv("GSS_SCRIPTS_DIR"); d != "" {
+	if d := os.Getenv("FGSS_SCRIPTS_DIR"); d != "" {
 		return d
 	}
 	return defaultScriptsDir
@@ -64,9 +78,9 @@ func RunScript(target, localScript string) error {
 
 func usage() {
 	fmt.Fprintf(os.Stderr, `Usage:
-  gss run <host> <script|path>     run a script on user@host or an ssh alias
-                                   (names resolve to %s/<name>.sh)
-  gss version
+  fgss run <host> <script|path>    run a script on user@host or an ssh alias
+                                  (names resolve to %s/<name>.sh)
+  fgss version
 `, scriptsDir())
 }
 
@@ -78,7 +92,7 @@ func main() {
 
 	switch os.Args[1] {
 	case "version":
-		fmt.Println("gss", version)
+		fmt.Println("fgss", version)
 	case "run":
 		if len(os.Args) != 4 {
 			usage()
@@ -91,7 +105,7 @@ func main() {
 	case "-h", "--help", "help":
 		usage()
 	default:
-		fmt.Fprintf(os.Stderr, "gss: unknown command %q\n\n", os.Args[1])
+		fmt.Fprintf(os.Stderr, "fgss: unknown command %q\n\n", os.Args[1])
 		usage()
 		os.Exit(2)
 	}

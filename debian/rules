@@ -1,0 +1,16 @@
+#!/usr/bin/make -f
+export CGO_ENABLED=0
+export GOCACHE=$(CURDIR)/debian/.gocache
+
+%:
+	dh $@
+
+override_dh_auto_build:
+override_dh_auto_test:
+
+override_dh_auto_install:
+	$(MAKE) install DESTDIR=$(CURDIR)/debian/fgss PREFIX=/usr VERSION=$(DEB_VERSION_UPSTREAM)
+
+# Go binary is already stripped via -ldflags.
+override_dh_dwz:
+override_dh_strip:
