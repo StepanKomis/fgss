@@ -1,4 +1,4 @@
-BIN        := gss
+BIN        := fgss
 PKG        := ./src/cmd/server
 VERSION    ?= $(shell git describe --tags --always --dirty 2>/dev/null || echo dev)
 
@@ -7,7 +7,7 @@ DESTDIR    ?=
 PREFIX     ?= /usr
 BINDIR     ?= $(PREFIX)/bin
 SYSCONFDIR ?= /etc
-SCRIPTDIR  ?= $(SYSCONFDIR)/gss/scripts
+SCRIPTDIR  ?= $(SYSCONFDIR)/fgss/scripts
 
 GOFLAGS    ?= -trimpath -buildvcs=false
 LDFLAGS    ?= -s -w -X main.version=$(VERSION)
@@ -16,7 +16,7 @@ LDFLAGS    ?= -s -w -X main.version=$(VERSION)
 
 run: ## Build and run with dev scripts: make run ARGS="version"
 	go build $(GOFLAGS) -ldflags "$(LDFLAGS)" -o $(BIN) $(PKG)
-	GSS_SCRIPTS_DIR=$(CURDIR)/scripts ./$(BIN) $(ARGS)
+	FGSS_SCRIPTS_DIR=$(CURDIR)/scripts ./$(BIN) $(ARGS)
 
 install: ## Build and install binary + scripts (honours DESTDIR, PREFIX)
 	go build $(GOFLAGS) -ldflags "$(LDFLAGS)" -o $(BIN) $(PKG)
