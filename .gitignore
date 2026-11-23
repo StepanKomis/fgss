@@ -1,0 +1,10 @@
+/fgss
+/pkg/
+/src-pkg/
+*.pkg.tar.*
+/debian/.gocache/
+/debian/fgss/
+/debian/*.debhelper*
+/debian/files
+/debian/*.substvars
+/debian/debhelper-build-stamp
